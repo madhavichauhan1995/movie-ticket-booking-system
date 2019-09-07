@@ -8,6 +8,8 @@
 # dependencies
 /node_modules
 
+/Desktop
+
 # IDEs and editors
 /.idea
 .project

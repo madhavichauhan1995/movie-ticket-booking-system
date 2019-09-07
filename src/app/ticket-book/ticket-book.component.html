@@ -1,0 +1,89 @@
+<div *ngIf="!showTicketWindow" style="text-align:left">
+
+  <div style="display: flex">
+    <div *ngFor='let item of movieList'
+      [ngClass]="{'movie-selected': selectedMovieData && selectedMovieData.name == item.name}"
+      (click)="getMovieDetail(item)" class="movie-container" >
+      <img class="img-size" style="height: 260px;width:230px" id="navbar-brand" [src]="item.path"
+        alt="App Logo" />
+      <div class="movie-name">{{item.name}}</div>
+      <div class="movie-name"  style="color:#4CAF50">
+        {{item.price}} Rs</div>
+    </div>
+  </div>
+  <button class="button" (click)="showTicketWindow=true" [disabled]="selectedMovieData == null">Select Seats</button>
+</div>
+
+<div *ngIf="showTicketWindow" class="text-center">
+  <div><img style="height: 260px" id="navbar-brand" [src]="selectedMovieData.path" alt="App Logo" /></div>
+  <div class="col-md-6 mb-lg dropdown-container" >
+    <div>Select No Of Tickets</div>
+    <select class="form-control" #noOfTicket (change)="selected(noOfTicket.value)">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="2">4</option>
+      <option value="3">5</option>
+    </select>
+  </div>
+  <div class="screen" >
+  </div>
+  Movie Screen Here
+  <div style="text-align: center;margin-left: 30%;margin-top: 20px">
+    <div style="display: flex;margin-left:50px;" *ngFor='let i of seatRows'>
+      <div class="seat-row" > {{i}}
+      </div>
+      <div *ngFor='let j of seatCols' (click)="selectedSeat(i,j)">
+        <div [ngClass]="isSelected(i,j)" class="seats">
+          {{j}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="button" (click)="showTicketWindow=true;modal.show()">Conform Seats</button>
+  <button class="button" (click)="showTicketWindow=false">Cancel</button>
+
+</div>
+<div class="modal" bsModal #modal="bs-modal" tabindex="-1" role="dialog" [config]="config"
+  aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog recognise-modal" style="width: 50%;">
+    <div class="modal-header b0 ">
+      <div class="modal-title pull-left pl-sm">
+        <h4 class="recognise-title font-20">Conform Movie Ticket Details</h4>
+      </div>
+      <button type="button" class="close pull-right" (click)="modal.hide()">
+        <span aria-hidden="true" class="text-lg">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body pt0" *ngIf="selectedMovieData">
+      <div class="row m">
+        <div class="form-group">
+          <div class="col-lg-3 p0"><label class="required"> Movie Name :</label> </div>
+          <div class="col-lg-9 p0">
+            {{selectedMovieData.name}}
+          </div>
+        </div>
+      </div>
+      <div class="row m">
+        <div class="form-group">
+          <div class="col-lg-3 p0"><label class="required"> Selected Seats :</label> </div>
+          <div class="col-lg-9 p0">
+            <span *ngFor='let j of selectedSeats'>{{j}} </span>
+          </div>
+        </div>
+
+      </div>
+      <div class="row m">
+        <div class="form-group">
+          <div class="col-lg-3 p0"><label class="required"> Total Amount :</label> </div>
+          <div class="col-lg-9 p0"> {{noOfTicket *  selectedMovieData.price}} </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="modal-footer pr-lg pt0 b0">
+      <button class="btn btn-info mr-sm mt pull-right" type="button" (click)="conform();modal.hide()">Book</button>
+      <button class="btn mr-sm mt pull-right" type="button" (click)="modal.hide()">Cancel</button>
+    </div>
+  </div>
+</div>

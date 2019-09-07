@@ -1,0 +1,23 @@
+<div class="bg-image" [ngStyle]="{ 'background': getPath() }">
+<form [formGroup]="valForm" (submit)="submitForm($event, valForm.value)">
+  
+    <div class="container">
+     <div class="text-danger"> {{errorMessage}} </div>
+      <label for="uname"><b>Username</b></label>
+      <input type="text" formControlName="email" [formControl]="valForm.controls['email']" formControlName="email" placeholder="Enter Username" name="uname" required>
+      <span class="text-danger" *ngIf="valForm.controls['email'].hasError('required') && (valForm.controls['email'].dirty || valForm.controls['email'].touched)">This field is required</span>
+      <span class="text-danger" *ngIf="valForm.controls['email'].hasError('email') && (valForm.controls['email'].dirty || valForm.controls['email'].touched)">This field must be a valid email address</span>
+    
+      <div>
+          <label for="psw"><b>Password</b></label>
+          <input type="password"   [formControl]="valForm.controls['password']" formControlName="password" placeholder="Enter Password" name="psw" required>
+          <span class="text-danger" *ngIf="valForm.controls['password'].hasError('required') && (valForm.controls['password'].dirty || valForm.controls['password'].touched)">This field is required</span>
+      </div>  
+      <button type="submit">Login</button>
+    </div>
+  
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" (click)="resetLogin()" class="cancelbtn">Reset</button>
+    </div>
+  </form>
+</div>

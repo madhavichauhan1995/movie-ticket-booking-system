@@ -33,6 +33,7 @@ input[type=text], input[type=password] {
     padding: 16px;
     background-color: white;
     margin-left: 30%;
+    margin-top: 10%;
   }
   
   span.psw {

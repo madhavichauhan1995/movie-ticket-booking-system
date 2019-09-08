@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
+import { triggerAsyncId } from 'async_hooks';
 
 @Component({
   selector: 'app-layout',
@@ -21,6 +22,14 @@ export class LayoutComponent implements OnInit {
 
   redirectToHome(){
     this.router.navigate(['Overview'])
+  }
+
+  showManu(){
+    if(window.location.pathname != '/Login'){
+      return true
+    }else{
+      return false
+    }
   }
 
 }

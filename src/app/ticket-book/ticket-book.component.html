@@ -1,21 +1,22 @@
-<div *ngIf="!showTicketWindow" style="text-align:left">
-
-  <div style="display: flex">
+<div *ngIf="!showTicketWindow">
+    <h4>Please select Movie</h4>
+  <div class="display-flex">
+   
     <div *ngFor='let item of movieList'
       [ngClass]="{'movie-selected': selectedMovieData && selectedMovieData.name == item.name}"
       (click)="getMovieDetail(item)" class="movie-container" >
-      <img class="img-size" style="height: 260px;width:230px" id="navbar-brand" [src]="item.path"
+      <img class="img-size" id="navbar-brand" [src]="item.path"
         alt="App Logo" />
       <div class="movie-name">{{item.name}}</div>
-      <div class="movie-name"  style="color:#4CAF50">
+      <div class="movie-name font-green"  >
         {{item.price}} Rs</div>
     </div>
   </div>
   <button class="button" (click)="showTicketWindow=true" [disabled]="selectedMovieData == null">Select Seats</button>
 </div>
 
-<div *ngIf="showTicketWindow" class="text-center">
-  <div><img style="height: 260px" id="navbar-brand" [src]="selectedMovieData.path" alt="App Logo" /></div>
+<div *ngIf="showTicketWindow" class="text-center ">
+  <div><img class="movie-img-height" id="navbar-brand" [src]="selectedMovieData.path" alt="App Logo" /></div>
   <div class="col-md-6 mb-lg dropdown-container" >
     <div>Select No Of Tickets</div>
     <select class="form-control" #noOfTicket (change)="selected(noOfTicket.value)">
@@ -29,8 +30,8 @@
   <div class="screen" >
   </div>
   Movie Screen Here
-  <div style="text-align: center;margin-left: 30%;margin-top: 20px">
-    <div style="display: flex;margin-left:50px;" *ngFor='let i of seatRows'>
+  <div class="seat-container" >
+    <div class="seat-row-container" *ngFor='let i of seatRows'>
       <div class="seat-row" > {{i}}
       </div>
       <div *ngFor='let j of seatCols' (click)="selectedSeat(i,j)">
@@ -46,7 +47,7 @@
 </div>
 <div class="modal" bsModal #modal="bs-modal" tabindex="-1" role="dialog" [config]="config"
   aria-labelledby="mySmallModalLabel" aria-hidden="true">
-  <div class="modal-dialog recognise-modal" style="width: 50%;">
+  <div class="modal-dialog recognise-modal width-50">
     <div class="modal-header b0 ">
       <div class="modal-title pull-left pl-sm">
         <h4 class="recognise-title font-20">Conform Movie Ticket Details</h4>
@@ -82,8 +83,8 @@
       </div>
     </div>
     <div class="modal-footer pr-lg pt0 b0">
-      <button class="btn btn-info mr-sm mt pull-right" type="button" (click)="conform();modal.hide()">Book</button>
-      <button class="btn mr-sm mt pull-right" type="button" (click)="modal.hide()">Cancel</button>
+      <button class="btn btn-info pull-right background-green" type="button" (click)="conform();modal.hide()">Book</button>
+      <button class="btn pull-right" type="button" (click)="modal.hide()">Cancel</button>
     </div>
   </div>
 </div>

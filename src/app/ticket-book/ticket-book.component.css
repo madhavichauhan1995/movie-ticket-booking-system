@@ -71,3 +71,56 @@
     margin-top: 5px;
     margin-bottom: 5px
   }
+
+  .seat-row{
+    height: 30px;
+    width:30px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px
+  }
+
+  .movie-container{
+    margin-left: 15px;
+    margin-right:15px;
+    cursor: pointer;
+    margin-top:10px;
+    margin-left: 5px; 
+  }
+
+  .img-size{
+    height: 260px;
+    width:220px
+  }
+
+  .seat-container{
+    text-align: center;
+    margin-left: 30%;
+    margin-top: 20px
+  }
+
+  .seat-row-container{
+    display: flex;
+    margin-left:50px;
+  }
+
+  .background-green{
+    background-color: #4CAF50;
+  }
+
+  .font-green{
+    color: #4CAF50;
+  }
+
+  .width-50{
+    width: 50%;
+  }
+
+  .display-flex{
+    display: flex;
+  }
+
+  .movie-img-height{
+    height: 260px
+  }

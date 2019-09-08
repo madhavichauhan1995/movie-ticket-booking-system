@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { TypeaheadMatch, PopoverDirective, ModalDirective } from 'ngx-bootstrap';
-import { reserveSlots } from '@angular/core/src/render3/instructions';
 
 @Component({
   selector: 'app-ticket-book',
@@ -14,32 +12,38 @@ export class TicketBookComponent implements OnInit {
     {
       name:'Mission Mangal',
       path:'assets/mission-mangal.jpeg',
-      price:230
+      price:230,
+      bookedTicket:[]
     },
     {
       name:'Saho',
       path:'assets/saho.jpeg',
-      price:250 
+      price:250 ,
+      bookedTicket:[]
     },
     {
       name:'X-Man:Dark Phenix',
       path:'assets/xman.jpeg',
-      price:250 
+      price:250,
+      bookedTicket:[] 
     },
     {
       name:'Kabir Singh',
       path:'assets/kabirsingh.jpg',
-      price:150 
+      price:150,
+      bookedTicket:[] 
     },
     {
       name:'Iron Man',
       path:'assets/ironman.jpg',
-      price:230 
+      price:230,
+      bookedTicket:['A1','A2','B1','B7']
     },
      {
       name:'Alita',
       path:'assets/alita.jpeg',
-      price:200 
+      price:200 ,
+      bookedTicket:['A1','A2','B1','B7']
     },
   ]
   noOfTicket:any = 1;
@@ -49,7 +53,6 @@ export class TicketBookComponent implements OnInit {
   selectedMovieData:any = null;
   seatRows:any=['A','B','C','D','E','F','G','H','I','j']
   seatCols:any=[1,2,3,4,5,6,7,8,9,10];
-  bookedTicket=['A1','A2','B1','B7']
   seatValue :any = [];
   seatNo:any;
   selectedSeats:any = [];
@@ -88,7 +91,7 @@ export class TicketBookComponent implements OnInit {
   isSelected(i,j){
     let val = i+j;
     let data = this.selectedSeats.find(x=> x == val)
-    let booked = this.bookedTicket.find(x=> x == val)
+    let booked = this.selectedMovieData.bookedTicket.find(x=> x == val)
     if(data != undefined ){
       return 'selected'
     }else if(booked != undefined){
@@ -102,9 +105,10 @@ export class TicketBookComponent implements OnInit {
 
   conform(){
     this.selectedSeats.forEach(element => {
-      this.bookedTicket.push(element)
+      this.selectedMovieData.bookedTicket.push(element)
     });
     this.selectedSeats = [];  
   }
+  
 }
 
